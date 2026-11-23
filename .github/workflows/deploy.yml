@@ -7,6 +7,9 @@ permissions:
   contents: read
   pages: write
   id-token: write
+concurrency:
+  group: pages
+  cancel-in-progress: true
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -19,18 +22,31 @@ jobs:
         with:
           node-version: 22
       - run: npm install --legacy-peer-deps
-      - run: sed -i 's|<BrowserRouter>|<BrowserRouter basename="/viacars">|' src/App.tsx || true
-      - run: npx vite build --base=/viacars/
-      - name: Trova la cartella del sito
+      - name: Configurazione per GitHub Pages
         run: |
-          OUT=$(find . -path ./node_modules -prune -o -name index.html -print | grep -v '^./index.html$' | head -1 | xargs dirname)
-          echo "Cartella trovata: $OUT"
-          ls -la "$OUT"
-          cp "$OUT/index.html" "$OUT/404.html"
-          echo "OUT=$OUT" >> $GITHUB_ENV
+          cat > vite.config.pages.ts <<'CFG'
+          import { defineConfig } from "@lovable.dev/vite-tanstack-config";
+          export default defineConfig({
+            vite: { base: "/viacars/" },
+            tanstackStart: {
+              server: { entry: "server" },
+              router: { basepath: "/viacars" },
+              prerender: { enabled: true, crawlLinks: true },
+              pages: [{ path: "/" }, { path: "/privacy" }, { path: "/cookie-policy" }],
+            },
+          });
+          CFG
+      - run: npx vite build --config vite.config.pages.ts
+      - name: Sistemazione finale
+        run: |
+          cd .output/public
+          cp index.html 404.html
+          touch .nojekyll
+          grep -rl "/__l5e/" . | xargs -r sed -i 's#/__l5e/#https://viacars-bilingual-ride-hub.lovable.app/__l5e/#g'
+          grep -rl 'href="/favicon.svg"' . | xargs -r sed -i 's#href="/favicon.svg"#href="/viacars/favicon.svg"#g'
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: ${{ env.OUT }}
+          path: .output/public
       - id: deployment
         uses: actions/deploy-pages@v4
