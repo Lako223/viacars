@@ -48,7 +48,7 @@ export const copy = {
     bookingLabel: "Il prossimo viaggio inizia qui", bookingTitle: "Dove ti\naccompagniamo?", bookingIntro: "Raccontaci il tuo itinerario. Ti rispondiamo su WhatsApp per organizzare insieme il viaggio.",
     labels: ["Nome e cognome", "Telefono", "Data del viaggio", "Ora", "Partenza", "Destinazione", "Passeggeri", "Tipo di servizio"],
     placeholders: ["Il tuo nome", "+39", "Indirizzo, aeroporto o stazione", "Dove vuoi arrivare"], send: "Richiedi su WhatsApp", formNote: "La richiesta non costituisce una prenotazione confermata.", privacyNote: "Proseguendo, i dati inseriti vengono condivisi con Viacars tramite WhatsApp.", error: "Controlla i campi: inserisci dati validi e rispetta il numero di posti del servizio.", sent: "Il messaggio è pronto su WhatsApp. Invialo per richiedere il tuo viaggio.",
-    contactsLabel: "Restiamo in contatto", contactsTitle: "A Roma. Al tuo fianco, ovunque.", address: "La nostra sede", map: "Mostra mappa Google", mapNote: "La mappa viene caricata da Google solo su tua richiesta.", footer: "Il tuo viaggio in Italia, con stile.", vat: "P.IVA: da inserire", rights: "Tutti i diritti riservati.", back: "Torna al sito",
+    contactsLabel: "Restiamo in contatto", contactsTitle: "A Roma. Al tuo fianco, ovunque.", address: "La nostra sede", map: "Mostra mappa Google", mapNote: "La mappa viene caricata da Google solo su tua richiesta.", footer: "Il tuo viaggio in Italia, con stile.", vat: "P.IVA 14929251008", rights: "Tutti i diritti riservati.", back: "Torna al sito",
   },
   en: {
     nav: ["Services", "Why Viacars", "Fleet", "Contact"], book: "Book your journey", whatsapp: "Book on WhatsApp", call: "Call now",
@@ -65,6 +65,6 @@ export const copy = {
     bookingLabel: "Your next journey starts here", bookingTitle: "Where can we\ntake you?", bookingIntro: "Tell us your itinerary. We will reply on WhatsApp to arrange your journey together.",
     labels: ["Full name", "Phone", "Travel date", "Time", "Pick-up", "Destination", "Passengers", "Service type"],
     placeholders: ["Your name", "+39", "Address, airport or station", "Where are you going?"], send: "Request on WhatsApp", formNote: "Your request is not a confirmed booking.", privacyNote: "By continuing, your details are shared with Viacars via WhatsApp.", error: "Please check your details and the passenger capacity of your selected service.", sent: "Your message is ready on WhatsApp. Send it to request your journey.",
-    contactsLabel: "Get in touch", contactsTitle: "In Rome. By your side, everywhere.", address: "Our office", map: "Show Google Map", mapNote: "The map loads from Google only when you request it.", footer: "Your journey in Italy, in style.", vat: "VAT number: to be provided", rights: "All rights reserved.", back: "Back to the website",
+    contactsLabel: "Get in touch", contactsTitle: "In Rome. By your side, everywhere.", address: "Our office", map: "Show Google Map", mapNote: "The map loads from Google only when you request it.", footer: "Your journey in Italy, in style.", vat: "VAT number 14929251008", rights: "All rights reserved.", back: "Back to the website",
   },
 };
