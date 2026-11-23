@@ -14,17 +14,23 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
         with:
-          node-version: 20
-      - run: npm install
+          node-version: 22
+      - run: npm install --legacy-peer-deps
       - run: sed -i 's|<BrowserRouter>|<BrowserRouter basename="/viacars">|' src/App.tsx || true
       - run: npx vite build --base=/viacars/
-      - run: cp dist/index.html dist/404.html
+      - name: Trova la cartella del sito
+        run: |
+          OUT=$(find . -path ./node_modules -prune -o -name index.html -print | grep -v '^./index.html$' | head -1 | xargs dirname)
+          echo "Cartella trovata: $OUT"
+          ls -la "$OUT"
+          cp "$OUT/index.html" "$OUT/404.html"
+          echo "OUT=$OUT" >> $GITHUB_ENV
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: dist
+          path: ${{ env.OUT }}
       - id: deployment
         uses: actions/deploy-pages@v4
