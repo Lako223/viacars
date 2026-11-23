@@ -28,3 +28,9 @@ use the editor.
   own key and store it in Secrets.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
 <!-- LOVABLE:END -->
+
+## Application architecture
+- Keep the main website as one scrolling TanStack route with shared validated language search state; legal documents have separate routes so they can be linked and indexed independently.
+- Keep the bilingual content and validated WhatsApp message builder in a browser-safe shared module; booking requests are sent directly by the visitor via WhatsApp and are not stored by this application.
+- Use Motion with reduced-motion support for presentation, and load the external map only after an explicit visitor action to avoid automatic Google requests.
+- Use CDN asset pointers for official logos and illustrative fleet photography; keep the favicon as a local SVG for browser compatibility.
